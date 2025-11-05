@@ -1,0 +1,11 @@
+{
+  "name": "inventory-management-system",
+  "version": "1.0.0",
+  "description": "\"inventory management tool for a small trading business using FIFO costing method\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "prajjwal sharma",
+  "license": "ISC"
+}
