@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  redpanda:
+    image: vectorized/redpanda:latest
+    command: redpanda start --overprovisioned --smp 1 --memory 1G --reserve-memory 0M --node-id 0 --kafka-addr PLAINTEXT://0.0.0.0:9092
+    ports:
+      - "9092:9092"
+    volumes:
+      - redpanda-data:/var/lib/redpanda
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: imdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redpanda
+      - postgres
+    volumes:
+      - ./:/app
+    command: npm run dev
+
+volumes:
+  redpanda-data:
+  pgdata:
