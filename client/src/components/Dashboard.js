@@ -21,7 +21,10 @@ export default function Dashboard() {
 
   useEffect(() => {
     loadData();
-    const socket = io("http://localhost:3000");
+    const socket = process.env.NODE_ENV === "production"
+  ? io() // same origin (works on Render)
+  : io("http://localhost:3000");
+  
     socket.on("inventory_event", () => loadData());
     return () => socket.disconnect();
   }, []);
