@@ -7,14 +7,25 @@ const cors = require("cors");
 function createApp(io) {
   const app = express();
   app.use(express.json());
+  
+const allowedOrigins = [
+  "http://localhost:3001", // for local dev
+  "https://fifo-inventory-managment-system.onrender.com" // your Render frontend
+];
 
 app.use(
-    cors({
-      origin: "http://localhost:3001", // React dev server
-      methods: ["GET", "POST", "PUT", "DELETE"],
-      allowedHeaders: ["Content-Type", "Authorization"],
-    })
-  );
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
   app.get('/health', (req, res) => res.json({ ok: true }));
   app.use("/", apiRoutes);
