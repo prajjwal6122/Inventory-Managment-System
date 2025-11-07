@@ -9,7 +9,13 @@ const db = require('./db');
 // create HTTP server with express app
 const appWrap = createApp(); // passing undefined io; we'll attach io below
 const server = http.createServer(appWrap);
-const io = new Server(server, { cors: { origin: '*' } });
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3001",
+    methods: ["GET", "POST"]
+  },
+});
+
 
 // attach io to app so that routes/middlewares can access if needed (optional)
 appWrap.set('io', io);

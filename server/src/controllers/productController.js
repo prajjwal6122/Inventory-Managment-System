@@ -20,4 +20,18 @@ async function getLedger(req, res) {
   }
 }
 
-module.exports = { getProducts, getLedger };
+async function getProductDetail(req, res) {
+  try {
+    const product_id = req.params.id;
+    // batches
+    const batches = await productService.getBatches(product_id);
+    // summary
+    const summary = await productService.getProductSummary(product_id);
+    return res.json({ product_id, ...summary, batches });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: 'internal' });
+  }
+}
+
+module.exports = { getProducts, getLedger, getProductDetail};
