@@ -7,7 +7,9 @@ const cors = require("cors");
 function createApp(io) {
   const app = express();
   app.use(express.json());
-  
+
+
+// Detect origin automatically
 const allowedOrigins = [
   "http://localhost:3001", // for local dev
   "https://fifo-inventory-managment-system.onrender.com" // your Render frontend
