@@ -1,12 +1,28 @@
 const { Kafka } = require('kafkajs');
-const { KAFKA_BROKERS } = require('../config');
+const { KAFKA_BROKERS ,KAFKA_USERNAME, KAFKA_PASSWORD} = require('../config');
 const fifoService = require('../services/fifoService');
 const logger = require('../utils/logger');
 
+let brokers = [];
+if (typeof KAFKA_BROKERS === 'string') {
+  brokers = KAFKA_BROKERS.split(',').map(b => b.trim());
+} else if (Array.isArray(KAFKA_BROKERS)) {
+  brokers = KAFKA_BROKERS;
+} else {
+  throw new Error('Invalid KAFKA_BROKERS in .env — must be a comma-separated string');
+}
+
 const kafka = new Kafka({
-  clientId: 'im-consumer',
-  brokers: KAFKA_BROKERS
+  clientId: 'fifo-consumer',
+  brokers,
+  ssl: true,
+  sasl: {
+    mechanism: 'plain',
+    username: KAFKA_USERNAME,
+    password: KAFKA_PASSWORD,
+  },
 });
+
 
 const consumer = kafka.consumer({ groupId: 'im-fifo-group' });
 
