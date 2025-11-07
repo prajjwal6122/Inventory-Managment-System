@@ -1,0 +1,12 @@
+{
+  "name": "fifo-inventory-fullstack",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "cd client && npm install && npm run build && cd ../server && npm install",
+    "start": "cd server && node src/server.js"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}

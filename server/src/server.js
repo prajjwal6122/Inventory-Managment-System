@@ -5,6 +5,8 @@ const { PORT } = require('./config');
 const { Server } = require('socket.io');
 const logger = require('./utils/logger');
 const db = require('./db');
+const express=require('express')
+const path = require("path");
 
 // create HTTP server with express app
 const appWrap = createApp(); // passing undefined io; we'll attach io below
@@ -24,6 +26,16 @@ io.on('connection', (socket) => {
   logger.info('Socket connected', socket.id);
   socket.on('disconnect', () => logger.info('Socket disconnected', socket.id));
 });
+
+
+// Serve the static files from React build folder
+appWrap.use(express.static(path.join(__dirname, "../../client/build")));
+
+// Handle any unknown routes by returning index.html
+appWrap.get(/.*/, (req, res) => {
+  res.sendFile(path.join(__dirname, "../../client/build", "index.html"));
+});
+
 
 // run DB migrations before starting
 (async () => {
