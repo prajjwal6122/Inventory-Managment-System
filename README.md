@@ -1,8 +1,8 @@
 # 🧮 FIFO Inventory Management System
 
 ![View Count](https://komarev.com/ghpvc/?username=PrajjwalSharma&label=Repo%20Views&color=brightgreen)  
-![Forks](https://img.shields.io/github/forks/PrajjwalSharma/fifo-inventory-management?style=social)  
-![Stars](https://img.shields.io/github/stars/PrajjwalSharma/fifo-inventory-management?style=social)  
+![Forks](https://github.com/prajjwal6122/Inventory-Managment-System/?style=socia)  
+![Stars](https://github.com/prajjwal6122/Inventory-Managment-System/?style=social)  
 ![Website Visitors](https://img.shields.io/badge/site%20views-100%2B-blue)
 
 ---
