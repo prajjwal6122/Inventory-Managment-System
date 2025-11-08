@@ -1,20 +1,39 @@
-# Inventory Management Backend (FIFO)
+# 🧮 FIFO Inventory Management System
 
-## Quick start (local)
-1. Copy `.env.example` to `.env` and edit
-2. Start local infra:
-   - With Docker: `docker-compose up --build`
-   - OR run Postgres + Redpanda separately
-3. Run migrations: `npm run migrate` (or in docker the container runs it)
-4. Start backend: `npm run dev`
-5. Use `node producer.js` to produce demo Kafka events
-6. API:
-   - POST /auth/login  { username, password } -> token
-   - GET /api/products  (Bearer token)
-   - GET /api/ledger  (Bearer token)
-   - POST /api/simulate { events: [...] } to publish events via server
+![View Count](https://komarev.com/ghpvc/?username=PrajjwalSharma&label=Repo%20Views&color=brightgreen)  
+![Forks](https://img.shields.io/github/forks/PrajjwalSharma/fifo-inventory-management?style=social)  
+![Stars](https://img.shields.io/github/stars/PrajjwalSharma/fifo-inventory-management?style=social)  
+![Website Visitors](https://img.shields.io/badge/site%20views-100%2B-blue)
 
-## Demo login:
-- username: admin
-- password: password
-- token returned: use as `Authorization: Bearer <token>`
+---
+
+## 📘 Overview
+**FIFO Inventory Management System** is a full-stack web application that demonstrates **real-time stock tracking** and **First-In, First-Out (FIFO)** inventory management using **Kafka, PostgreSQL, React, and Socket.io**.
+
+The system ensures that items added earliest are processed first — a principle essential for accurate warehouse and stock management.
+
+---
+
+## 🏗️ Tech Stack
+
+**Frontend:**
+- React.js  
+- TailwindCSS  
+- Axios  
+- Socket.io-client  
+
+**Backend:**
+- Node.js  
+- Express.js  
+- Kafka  
+- PostgreSQL  
+- Socket.io  
+
+**Other Tools:**
+- Render (for deployment)  
+- dotenv for environment management  
+
+---
+
+## 🧩 System Architecture
+
