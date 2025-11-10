@@ -42,26 +42,27 @@ The system ensures that items added earliest are processed first — a principle
 
 ## 🧩 System Architecture
 
-+--------------------------+
-| Frontend |
+\+--------------------------+\
+| Frontend |\
 | React + TailwindCSS |
-| Socket.io-client |
-+-----------+--------------+
-|
 | (WebSocket / API)
-v
+| Socket.io-client |\
 +-----------+--------------+
+
+| Backend |\
++-----------+--------------+\
 | Backend API |
-| Express + Socket.io |
-| Kafka Consumer + FIFO |
+| Express + Socket.io || Kafka Consumer + FIFO |
 | PostgreSQL Integration |
+\
 +-----------+--------------+
-|
-| (Kafka Topic)
-v
-+-----------+--------------+
-| Kafka Producer |
-| producer.js (local sim) |
+
+
+| (Kafka Topic) |\
+v\
++-----------+--------------+\
+| Kafka Producer |\
+| producer.js (local sim) |\
 +--------------------------+
 
 
@@ -71,27 +72,27 @@ v
 
 
 
-fifo-inventory-management/
-├── client/ # React frontend
-│ ├── src/
-│ │ ├── components/ # UI components
-│ │ ├── pages/ # Pages and views
-│ │ ├── services/ # API calls (Axios)
-│ │ └── App.js # Entry point
-│ └── package.json
-│
-├── server/ # Node.js backend
-│ ├── src/
-│ │ ├── config/ # DB, Kafka setup
-│ │ ├── controllers/ # FIFO logic & APIs
-│ │ ├── routes/ # Express routes
-│ │ ├── models/ # PostgreSQL models
-│ │ ├── kafka/ # Producer/Consumer setup
-│ │ └── server.js # Entry file
-│ └── package.json
-│
-├── .env.example
-└── README.md
+fifo-inventory-management/ \
+│── client/ # React frontend \
+│ ├── src/  \
+│ │ ├── components/ # UI components \
+│ │ ├── pages/ # Pages and views \
+│ │ ├── services/ # API calls (Axios) \
+│ │ └── App.js # Entry point \
+│ └── package.json \
+│ \
+│── server/ # Node.js backend \
+│ ├── src/ \
+│ │ ├── config/ # DB, Kafka setup \
+│ │ ├── controllers/ # FIFO logic & APIs \
+│ │ ├── routes/ # Express routes \
+│ │ ├── models/ # PostgreSQL models \
+│ │ ├── kafka/ # Producer/Consumer setup \
+│ │ └── server.js # Entry file \
+│ └── package.json \
+│\
+│── .env.example \
+└── README.md \
 
 
 ---
@@ -108,29 +109,29 @@ The **FIFO (First-In, First-Out)** principle ensures that:
 
 ---
 
-## 💾 Environment Setup
+## 💾 Environment Setup 
 
-Create a `.env` file in your `server` directory:
+Create a `.env` file in your `server` directory: \
 
 
-PORT=3000
-DATABASE_URL=postgres://<user>:<password>@<host>:<port>/<db_name>
-KAFKA_BROKER=localhost:9092
-CLIENT_URL=http://localhost:3001
+PORT=3000\
+DATABASE_URL=postgres://<user>:<password>@<host>:<port>/<db_name>\
+KAFKA_BROKER=localhost:9092\
+CLIENT_URL=http://localhost:3001\
 
-🧠 Run Locally
-1️⃣ Clone the repository
-git clone https://github.com/<your-username>/fifo-inventory-management.git
-cd fifo-inventory-management
+🧠 Run Locally\
+1️⃣ Clone the repository\
+git clone https://github.com/prajjwal6122/fifo-inventory-management.git\
+cd fifo-inventory-management\
 
-2️⃣ Setup Backend
-cd server
-npm install
+2️⃣ Setup Backend\
+cd server\
+npm install\
 npm run dev
 
-3️⃣ Setup Frontend
-cd ../client
-npm install
+3️⃣ Setup Frontend\
+cd ../client\
+npm install\
 npm start
 
 🚀 Deployment
@@ -139,21 +140,21 @@ The project is deployed on Render
 🔗 Live URL: https://fifo-inventory-managment-system.onrender.com
 
 📊 Features Summary
-Feature	Description
-⚡ Real-Time Updates	Stock movement and changes visible instantly
-🧮 FIFO Logic	Ensures earliest stock is used first
-🧠 Kafka Integration	Event-driven system for stock updates
-🧱 PostgreSQL	Persistent and structured inventory data
-🧭 Dashboard	Live visualization of stock levels
-🛠️ CRUD APIs	Add, update, delete, and fetch inventory items
-📈 Static Counters
+Feature	Description\
+⚡ Real-Time Updates	Stock movement and changes visible instantly\
+🧮 FIFO Logic	Ensures earliest stock is used first\
+🧠 Kafka Integration	Event-driven system for stock updates\
+🧱 PostgreSQL	Persistent and structured inventory data\
+🧭 Dashboard	Live visualization of stock levels\
+🛠️ CRUD APIs	Add, update, delete, and fetch inventory items\
+📈 Static Counters\
 
 
 
 👨‍💻 Author
 
-Developed by Prajjwal Sharma
-Full Stack Software Engineer | MERN + PostgreSQL + Kafka + React Expert
+Developed by Prajjwal Sharma\
+Full Stack Software Engineer | MERN + PostgreSQL + Kafka + React Expert\
 © 2025 All Rights Reserved
 
 
