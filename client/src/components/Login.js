@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import API from "../api/api";
 import { useNavigate } from "react-router-dom";
+import {jwtDecode} from 'jwt-decode'; 
 
 export default function Login({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -8,11 +9,14 @@ export default function Login({ onLogin }) {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await API.post("/auth/login", { username, password });
       localStorage.setItem("token", res.data.token);
+      const decode=jwtDecode(res.data.token);
+      localStorage.setItem('user',JSON.stringify(decode))
       onLogin();
       navigate("/"); // ✅ redirect to dashboard
     } catch (err) {

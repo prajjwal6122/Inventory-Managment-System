@@ -5,6 +5,16 @@ CREATE TABLE IF NOT EXISTS products (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT now()
 );
 
+--users table
+CREATE TABLE   IF NOT EXISTS users(
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  first_name VARCHAR(255) NOT NULL,
+  last_name VARCHAR(255) NOT NULL,
+  role VARCHAR(50) DEFAULT 'user'
+);
+
 -- inventory_batches: each purchase is a batch
 CREATE TABLE IF NOT EXISTS inventory_batches (
   id BIGSERIAL PRIMARY KEY,
